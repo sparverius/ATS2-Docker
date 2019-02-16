@@ -28,24 +28,15 @@
 
 export PATSHOME=${HOME}/ATS2
 export PATSCONTRIB=${HOME}/ATS2-contrib
-
 export PATH=${PATSHOME}/bin:${PATH}
 
 ######
 
 # echo "export PATSHOME=${HOME}/ATS2" >> ${HOME}/.bashrc
 # echo "export PATSCONTRIB=${HOME}/ATS2-contrib" >> ${HOME}/.bashrc
-
 # echo "export PATH=\${PATSHOME}/bin:\${PATH}" >> ${HOME}/.bashrc
 
 ######
-
-# sf_url=https://sourceforge.net/projects/ats2-lang/files/ats2-lang\
-#       /ats2-postiats-0.3.13/ATS2-Postiats-int-0.3.13.tgz/download
-
-# REL_VERSION=
-# REL_KND=
-# sf_url=
 
 _dl_knd() {
     local REL_VERSION="$1"

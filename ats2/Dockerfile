@@ -2,13 +2,18 @@ FROM ubuntu:latest
 
 ######
 
-RUN apt-get -qq update
-RUN apt-get -qq install -y build-essential git wget time \
-    gawk libgmp-dev libgc-dev libjson-c-dev 
-RUN apt-get -y clean
+# WORKDIR /root
+# ENV HOME=/root
 
-# WORKDIR /home
-# ENV HOME=/home
+COPY \
+./ats2-install.sh ${HOME}/ats2-install.sh
+
+RUN \
+apt-get -qq update && \
+apt-get -qq install -y \
+build-essential git wget time gawk libgmp-dev libgc-dev libjson-c-dev && \
+rm -rf /var/lib/apt/lists/* && \
+apt-get autoremove && apt-get clean
 
 ######
 
@@ -18,19 +23,22 @@ ENV PATH=${PATSHOME}/bin:${PATH}
 
 ######
 
-RUN echo "export PATSHOME=${HOME}/ATS2" >> ${HOME}/.bashrc
-RUN echo "export PATH=\${PATSHOME}/bin:\${PATH}" >> ${HOME}/.bashrc
-RUN echo "export PATSCONTRIB=${HOME}/ATS2-contrib" >> ${HOME}/.bashrc
+RUN \
+echo "export PATSHOME=${HOME}/ATS2" >> ${HOME}/.bashrc && \
+echo "export PATH=\${PATSHOME}/bin:\${PATH}" >> ${HOME}/.bashrc && \
+echo "export PATSCONTRIB=${HOME}/ATS2-contrib" >> ${HOME}/.bashrc
 
 ######
-
-COPY ./ats2-install.sh ${HOME}/ats2-install.sh
 
 ARG _VERSION=0.3.13
 ARG _KND
 
-RUN echo $_VERSION && echo $_KND && bash ats2-install.sh $_VERSION $_KND && rm -f ${HOME}/ats2-install.sh
+RUN \
+echo $_VERSION && \
+echo $_KND && \
+bash ats2-install.sh $_VERSION $_KND && \
+rm -f /ats2-install.sh
 
-RUN rm -f /ats2-install.sh
+WORKDIR /root
 
 # End of [Dockerfile]

@@ -55,6 +55,7 @@ _dl_knd() {
     cd ${HOME}
     wget -O ${HOME}/ATS2-Postiats-${REL_KND}-${REL_VERSION}.tgz "$_url" 
     tar -xf ATS2-Postiats-${REL_KND}-${REL_VERSION}.tgz
+    rm -f ATS2-Postiats-${REL_KND}-${REL_VERSION}.tgz
     mv ATS2-Postiats-${REL_KND}-${REL_VERSION} ATS2
 }
 

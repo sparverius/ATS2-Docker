@@ -31,5 +31,6 @@ ARG _KND
 
 RUN echo $_VERSION && echo $_KND && bash ats2-install.sh $_VERSION $_KND && rm -f ${HOME}/ats2-install.sh
 
+RUN rm -f /ats2-install.sh
 
 # End of [Dockerfile]
